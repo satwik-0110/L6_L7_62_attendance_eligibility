@@ -25,9 +25,9 @@ other_types = (
     | st.lists(st.integers())
 )
 
-# Text shaped like "ATTENDED/HELD". Plain random text almost never contains
-# two numbers around a slash, so this gets the fuzzer as far as the
-# arithmetic: zero held, negative numbers and attended greater than held.
+# Text shaped like "ATTENDED/HELD". Plain random text rarely forms a valid
+# ratio, so this makes sure the fuzzer exercises the arithmetic: zero held,
+# negative numbers and attended greater than held.
 ratio_like = st.builds(
     "{}/{}".format, st.integers(-5, 500), st.integers(-5, 500)
 )
